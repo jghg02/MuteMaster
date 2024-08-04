@@ -1,0 +1,19 @@
+{
+  "manifest_version": 2,
+  "name": "MuteMaster",
+  "version": "1.0",
+  "permissions": [
+    "tabs",
+    "activeTab"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_icon": {
+      "19": "images/unmuted.png",
+      "38": "images/unmuted.png"
+    },
+    "default_popup": "popup.html"
+  }
+}

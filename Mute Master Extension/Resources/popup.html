@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tab Audio Control</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      width: 300px; /* Width of the popup */
+      padding: 10px;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    #listTitle {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .tab-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #e6e6e6; /* Default background color */
+    }
+    .tab-item:nth-child(even) {
+      background-color: #f9f9f9; /* Alternate background color */
+    }
+    .tab-title {
+      flex-grow: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .mute-button {
+      width: 50px; /* Fixed width for the button */
+      height: 20px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 0;
+      margin-left: auto; /* Aligns the button to the right */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mute-button img {
+      width: 20px; /* Set desired width */
+      height: 20px; /* Set desired height */
+    }
+    #noTabsMessage {
+      text-align: center;
+      color: #555;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="listTitle">Tabs with Audio</div>
+  <div id="tabList">
+    <!-- Tabs with audio will be listed here -->
+  </div>
+  <div id="noTabsMessage" style="display: none;">
+    No audible tabs available to mute.
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
