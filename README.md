@@ -1,0 +1,1 @@
+## Mute-Master Safari Extension
