@@ -1,71 +1,137 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Tab Audio Control</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      width: 300px; /* Width of the popup */
-      padding: 10px;
-      margin: 0;
-      background-color: #f0f0f0;
-    }
-    #listTitle {
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    .tab-item {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 5px;
-      border-radius: 5px;
-      cursor: pointer;
-      background-color: #e6e6e6; /* Default background color */
-    }
-    .tab-item:nth-child(even) {
-      background-color: #f9f9f9; /* Alternate background color */
-    }
-    .tab-title {
-      flex-grow: 1;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .mute-button {
-      width: 50px; /* Fixed width for the button */
-      height: 20px;
-      border: none;
-      background: none;
-      cursor: pointer;
-      padding: 0;
-      margin-left: auto; /* Aligns the button to the right */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .mute-button img {
-      width: 20px; /* Set desired width */
-      height: 20px; /* Set desired height */
-    }
-    #noTabsMessage {
-      text-align: center;
-      color: #555;
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
-  <div id="listTitle">Tabs with Audio</div>
-  <div id="tabList">
-    <!-- Tabs with audio will be listed here -->
-  </div>
-  <div id="noTabsMessage" style="display: none;">
-    No audible tabs available to mute.
-  </div>
-
-  <script src="popup.js"></script>
-</body>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Tab Audio Control</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                font-family: Arial, sans-serif;
+                font-size: 13px;
+                margin: 0;
+                padding: 0;
+                width: 300px;
+                background: linear-gradient(to bottom, #f9f9f9, #ececec);
+                color: #333;
+            }
+            
+            header {
+                padding: 10px;
+                background: #ffffff;
+                border-bottom: 1px solid #ccc;
+            }
+            
+            h1 {
+                font-size: 16px;
+                margin: 0;
+                text-align: center;
+                font-weight: bold;
+            }
+            
+            main {
+                padding: 10px;
+            }
+            
+            #tabList {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .tab-item {
+                display: flex;
+                align-items: center;
+                background-color: #ffffff;
+                border-radius: 5px;
+                padding: 6px 8px;
+                transition: background-color 0.2s ease;
+                border: 1px solid #ddd;
+                cursor: pointer;
+            }
+            
+            .tab-item:hover {
+                background-color: #f0f0f0;
+            }
+            
+            .tab-title {
+                flex: 1;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                margin-right: 10px;
+            }
+            
+            .mute-button {
+                width: 30px;
+                height: 30px;
+                border: none;
+                background: transparent;
+                cursor: pointer;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                transition: background 0.2s ease;
+            }
+            
+            .mute-button:focus, .mute-button:hover {
+                background: #e0e0e0;
+                outline: none;
+            }
+            
+            .mute-button img {
+                width: 20px;
+                height: 20px;
+                pointer-events: none;
+            }
+            
+            #noTabsMessage {
+                text-align: center;
+                color: #666;
+                margin-top: 30px;
+                font-size: 14px;
+            }
+            body.dark-mode {
+                background: linear-gradient(to bottom, #2b2b2b, #1c1c1c);
+                color: #ddd;
+            }
+            
+            body.dark-mode header {
+                background: #333;
+                border-bottom: 1px solid #444;
+            }
+            
+            body.dark-mode .tab-item {
+                background-color: #444;
+                border: 1px solid #555;
+            }
+            
+            body.dark-mode .tab-item:hover {
+                background-color: #555;
+            }
+            
+            body.dark-mode .mute-button:hover {
+                background: #666;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Tabs with Audio</h1>
+        </header>
+        <main>
+            <div id="tabList" aria-live="polite">
+                <!-- Dynamically generated audible tabs will be listed here -->
+            </div>
+            <div id="noTabsMessage" style="display: none;">
+                No audible tabs available to mute.
+            </div>
+        </main>
+        
+        <script src="popup.js"></script>
+    </body>
 </html>

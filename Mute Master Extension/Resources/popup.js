@@ -1,4 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // Detect dark mode preference and apply it
+  function applyColorScheme() {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }
+
+  // Initial check and setup listener
+  applyColorScheme();
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', applyColorScheme);
+
   // Get the list and message elements
   const tabList = document.getElementById('tabList');
   const noTabsMessage = document.getElementById('noTabsMessage');
@@ -30,15 +43,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const icon = document.createElement('img');
         icon.src = tab.mutedInfo.muted ? icons.muted : icons.unmuted;
-        icon.width = 20; // Set the width of the icon
-        icon.height = 20; // Set the height of the icon
+        icon.width = 20;
+        icon.height = 20;
 
         muteButton.appendChild(icon);
 
         muteButton.addEventListener('click', (event) => {
           event.stopPropagation();
-          chrome.tabs.update(tab.id, { muted: !tab.mutedInfo.muted }, (updatedTab) => {
-            icon.src = updatedTab.mutedInfo.muted ? icons.muted : icons.unmuted;
+
+          // Always fetch the current state of the tab before toggling
+          chrome.tabs.get(tab.id, (currentTab) => {
+            const newMutedState = !currentTab.mutedInfo.muted;
+            chrome.tabs.update(tab.id, { muted: newMutedState }, (updatedTab) => {
+              icon.src = updatedTab.mutedInfo.muted ? icons.muted : icons.unmuted;
+            });
           });
         });
 
